@@ -3,12 +3,17 @@ from tkinter import ttk
 
 root = tk.Tk()
 style = "Arial 14 bold"
-font_colour = "white"
+
+def font():
+    if darkmode_var.get() == 1:
+        root.configure(bg = "black")
+    else:
+        root.configure(bg = "#d9d9d9")
 
 top_frame = tk.Frame(root)
 top_frame.pack(fill="x")
 
-title = tk.Label(top_frame, text = "Hero name generator", bg = "purple", font = style, fg = font_colour)
+title = tk.Label(top_frame, text = "Hero name generator", bg = "purple", font = style, fg = "white")
 title.pack(fill = "x")
 
 adjective_label = tk.Label(root, text = "Choose an adjective...", font = style)
@@ -18,6 +23,8 @@ ADJECTIVE1 = "Happy"
 ADJECTIVE2 = "Awesome"
 ADJECTIVE3 = "Outgoing"
 ADJECTIVE4 = "Funky"
+
+        
 
 def radio_call():
     global adjective
@@ -66,9 +73,14 @@ animal_combobox['values'] = animals_list
 animal_combobox.pack()
 
 go_button = tk.Button(root, text = "GO!", font = style, command = generator, width = 9)
-go_button.pack(pady = 25)
+go_button.pack(pady = 20)
 
 hero_name_label = tk.Label(root, font = style, text = "", fg = "purple")
 hero_name_label.pack()
+
+darkmode_var = tk.IntVar()
+darkmode_var.set(0)
+darkmode = ttk.Checkbutton(root, text = "Dark mode", variable = darkmode_var, command = font)
+darkmode.pack()
 
 root.mainloop()
